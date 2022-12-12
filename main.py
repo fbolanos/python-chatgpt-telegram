@@ -41,7 +41,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             b_found_chat_history = True
             
     if not b_found_chat_history:
-        start_message = "Created a new chat history object for you. If you wish for chatGPT to take into account the previous message, please beging your message with @@. If no @@ is found then chatGPT will only use the context in your current message to respond to your query."
+        start_message = "Created a new chat history object for you. If you wish for chatGPT to take into account the previous message, please beging your message with {}. If no {} is found then chatGPT will only use the context in your current message to respond to your query."
         
     chat_obj = TextHistory(update.effective_chat.id)
     list_of_chat_histories.append(chat_obj)
@@ -61,11 +61,11 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     if not b_found_chat_history:
         await context.bot.send_message(chat_id=update.effective_chat.id, 
-                                       text='Unable to find your chat history object, please start the conversation with a \'/start\' message.')
+                                       text='Unable to find your chat history object, please start the conversation with a \'/start\' message.'.format(PREVIOUS_CONTEXT_KEYWORD, PREVIOUS_CONTEXT_KEYWORD))
         return
     
     if PREVIOUS_CONTEXT_KEYWORD in update.message.text:
-        update.message.text = update.message.text.replace('@@\n', '')
+        update.message.text = update.message.text.replace(PREVIOUS_CONTEXT_KEYWORD, '')
         
         chat_history_obj.add_to_last_message(update.effective_chat.id, update.message.text)
         
