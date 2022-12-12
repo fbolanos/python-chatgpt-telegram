@@ -5,6 +5,10 @@ One key point to note is that, by default, when chatting with this bot it will i
 
 If the '@@\n' keyword is included, then the previous prompt and the last bot's response will be concatenated and sent to OpenAI. Each time you send a message starting with the keyword '@@\n', the message concatenation grows. To start a new topic of conversation, all you need to do is ask your question normally without the keyword.
 
+Example chat interaction with and without keyword:
+
+<img src="https://i.imgur.com/bl5yly1.png" width="300" />
+
 ### Why did you do it this way?
 I chose to do it this way for simplicity and to save tokens. Often times I found that I could get the answer I wanted in a single question. Additionally, I wanted the implementation to be as simple as possible and with few dependencies. This bot works with only two dependencies: 'openai' and 'python-telegram-bot'.
 
