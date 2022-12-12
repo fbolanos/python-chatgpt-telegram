@@ -1,0 +1,8 @@
+name: telegram-bot-chatGPT
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - pip: 
+    - openai
+    - python-telegram-bot==20.0a6
